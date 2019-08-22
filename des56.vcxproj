@@ -28,16 +28,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\compat-5.2.c" />
-    <ClCompile Include="src\md5.c" />
-    <ClCompile Include="src\md5lib.c" />
+    <ClCompile Include="src\des56.c" />
+    <ClCompile Include="src\ldes56.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\compat-5.2.h" />
-    <ClInclude Include="src\md5.h" />
+    <ClInclude Include="src\des56.h" />
+    <ClInclude Include="src\ldes56.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{27DBBFD5-9D7E-47A8-9DB0-E29D2B528550}</ProjectGuid>
+    <ProjectGuid>{701A8FFD-8AD7-4578-A9F8-A071D60D2033}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>lfs</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
@@ -109,36 +110,36 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)execute\$(Platform)\$(Configuration)\clibs\$(ProjectName)\</OutDir>
+    <OutDir>$(SolutionDir)execute\$(Platform)\$(Configuration)\clibs\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <TargetName>core</TargetName>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)execute\$(Platform)\$(Configuration)\clibs\$(ProjectName)\</OutDir>
-    <TargetName>core</TargetName>
+    <OutDir>$(SolutionDir)execute\$(Platform)\$(Configuration)\clibs\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)execute\$(Platform)\$(Configuration)\clibs\$(ProjectName)\</OutDir>
+    <OutDir>$(SolutionDir)execute\$(Platform)\$(Configuration)\clibs\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <TargetName>core</TargetName>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_static|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)execute\$(Platform)\$(Configuration)\clibs\$(ProjectName)\</OutDir>
+    <OutDir>$(SolutionDir)execute\$(Platform)\$(Configuration)\clibs\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
-    <TargetName>core</TargetName>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)execute\$(Platform)\$(Configuration)\clibs\$(ProjectName)\</OutDir>
-    <TargetName>core</TargetName>
+    <OutDir>$(SolutionDir)execute\$(Platform)\$(Configuration)\clibs\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_static|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)execute\$(Platform)\$(Configuration)\clibs\$(ProjectName)\</OutDir>
-    <TargetName>core</TargetName>
+    <OutDir>$(SolutionDir)execute\$(Platform)\$(Configuration)\clibs\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -165,13 +166,11 @@
       <AdditionalLibraryDirectories>$(SolutionDir)/Libs/$(Platform)/$(Configuration);$(SolutionDir)/Libs/$(Platform)/;%(AdditionalLibraryDirectories);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <ModuleDefinitionFile>src/md5.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>src/des56.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>if exist $(SolutionDir)execute\$(Platform)\$(Configuration)\ibs goto 1
-mkdir $(SolutionDir)execute\$(Platform)\$(Configuration)\libs
-:1
-copy $(ProjectDir)src\md5.lua $(SolutionDir)execute\$(Platform)\$(Configuration)\libs\md5.lua</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -198,13 +197,11 @@ copy $(ProjectDir)src\md5.lua $(SolutionDir)execute\$(Platform)\$(Configuration)
       <EnableUAC>true</EnableUAC>
       <AdditionalLibraryDirectories>$(SolutionDir)/Libs/$(Platform)/$(Configuration);$(SolutionDir)/Libs/$(Platform)/;%(AdditionalLibraryDirectories);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>src/md5.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>src/des56.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>if exist $(SolutionDir)execute\$(Platform)\$(Configuration)\ibs goto 1
-mkdir $(SolutionDir)execute\$(Platform)\$(Configuration)\libs
-:1
-copy $(ProjectDir)src\md5.lua $(SolutionDir)execute\$(Platform)\$(Configuration)\libs\md5.lua</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -237,13 +234,11 @@ copy $(ProjectDir)src\md5.lua $(SolutionDir)execute\$(Platform)\$(Configuration)
       <AdditionalDependencies>lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <LinkTimeCodeGeneration />
       <AdditionalOptions>/LTCG %(AdditionalOptions)</AdditionalOptions>
-      <ModuleDefinitionFile>src/md5.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>src/des56.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>if exist $(SolutionDir)execute\$(Platform)\$(Configuration)\ibs goto 1
-mkdir $(SolutionDir)execute\$(Platform)\$(Configuration)\libs
-:1
-copy $(ProjectDir)src\md5.lua $(SolutionDir)execute\$(Platform)\$(Configuration)\libs\md5.lua</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_static|Win32'">
@@ -257,7 +252,7 @@ copy $(ProjectDir)src\md5.lua $(SolutionDir)execute\$(Platform)\$(Configuration)
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <SDLCheck>
       </SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_WINDOWS;_WIN32;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;LFS_EXPORTS;_WINDOWS;_USRDLL;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>..\lua\lua\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -277,13 +272,11 @@ copy $(ProjectDir)src\md5.lua $(SolutionDir)execute\$(Platform)\$(Configuration)
       <LinkTimeCodeGeneration>
       </LinkTimeCodeGeneration>
       <AdditionalOptions>/LTCG %(AdditionalOptions)</AdditionalOptions>
-      <ModuleDefinitionFile>src/md5.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>src/des56.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>if exist $(SolutionDir)execute\$(Platform)\$(Configuration)\ibs goto 1
-mkdir $(SolutionDir)execute\$(Platform)\$(Configuration)\libs
-:1
-copy $(ProjectDir)src\md5.lua $(SolutionDir)execute\$(Platform)\$(Configuration)\libs\md5.lua</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -316,13 +309,11 @@ copy $(ProjectDir)src\md5.lua $(SolutionDir)execute\$(Platform)\$(Configuration)
       <AdditionalDependencies>lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <LinkTimeCodeGeneration />
       <AdditionalOptions>/LTCG %(AdditionalOptions)</AdditionalOptions>
-      <ModuleDefinitionFile>src/md5.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>src/des56.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>if exist $(SolutionDir)execute\$(Platform)\$(Configuration)\ibs goto 1
-mkdir $(SolutionDir)execute\$(Platform)\$(Configuration)\libs
-:1
-copy $(ProjectDir)src\md5.lua $(SolutionDir)execute\$(Platform)\$(Configuration)\libs\md5.lua</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_static|x64'">
@@ -356,13 +347,11 @@ copy $(ProjectDir)src\md5.lua $(SolutionDir)execute\$(Platform)\$(Configuration)
       <LinkTimeCodeGeneration>
       </LinkTimeCodeGeneration>
       <AdditionalOptions>/LTCG %(AdditionalOptions)</AdditionalOptions>
-      <ModuleDefinitionFile>src/md5.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>src/des56.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>if exist $(SolutionDir)execute\$(Platform)\$(Configuration)\ibs goto 1
-mkdir $(SolutionDir)execute\$(Platform)\$(Configuration)\libs
-:1
-copy $(ProjectDir)src\md5.lua $(SolutionDir)execute\$(Platform)\$(Configuration)\libs\md5.lua</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
