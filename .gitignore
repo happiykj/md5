@@ -2,3 +2,9 @@
 *.obj
 *.so
 *.dll
+/Win32/Release/*.log
+/Win32/Release/des56.tlog/*.tlog
+/Win32/Release/des56.tlog/*.lastbuildstate
+/Win32/Release/*.txt
+/Win32/Release/md5.tlog/*.tlog
+/Win32/Release/md5.tlog/*.lastbuildstate
